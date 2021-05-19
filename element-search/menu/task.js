@@ -1,21 +1,16 @@
 'use strict';
 
-let menuLink = document.querySelectorAll('.menu_sub');
+const menuLink = document.querySelectorAll(".menu__link");
 for (let i = 0; i < menuLink.length; i++) {
-    let otherMenu = menuLink[i].previousSibling.previousSibling;
-
-    otherMenu.addEventListener('click', function() {
-        event.preventDefault();
-        if (menuLink[i].classList.contains('menu_active')) {
-            menuLink[i].classList.remove('menu_active');
-        } else {
-            menuLink[i].classList.add('menu_active');
-        }
-    });
-
-    otherMenu.addEventListener('blur', function() {
-        if (menuLink[i].classList.contains('menu_active')) {
-            menuLink[i].classList.remove('menu_active');
-        }
-    });
+  const otherMenu = menuLink.item(i).parentElement.querySelector(".menu_sub");
+  menuLink.item(i).onclick = () => {
+    if (otherMenu) {
+      if (!otherMenu.classList.contains("menu_active")) {
+        otherMenu.classList.toggle("menu_active");
+      } else {
+        otherMenu.classList.toggle("menu_active");
+      }     
+      return false;
+    }
+  }
 }
